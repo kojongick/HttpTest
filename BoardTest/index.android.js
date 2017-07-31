@@ -15,34 +15,44 @@ import {
 } from 'react-native';
 
 export default class BoardTest extends Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+      super(props)
       this.state = {
-          data: ''
+          data: "jje9302",
+          name: "asdf",
+          uri: "6_1_1"
       }
-
   }
-    httpTest(){
-        alert("들어옴")
-        fetch('https://jsonplaceholder.typicode.com/posts/1', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                username: 'test',
-                password: 'test123',
-            })
-        })
 
-            .then((response) => response.json())
-            .then((responseData) => {
-                console.log(
-                    "POST Response",
-                    "Response Body -> " + JSON.stringify(responseData)
-                )
-            }).done()
+      httpTest(){
+
+        alert("들어옴")
+          var headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+          }
+
+          var params = {
+              id:"jje9302",
+              name: 'test@gmail.com',
+              
+          };
+          var url = "http://49.161.111.188:8080/boards"
+          var formData = new FormData();
+
+        for (var k in params) {
+            formData.append(k, params[k]);
+        }
+
+        var request = {
+            method: 'POST',
+            headers: headers,
+            body: formData
+        };
+
+        fetch(url, request)
+
+
 
     }
 
